@@ -19,11 +19,11 @@ const Users = () => {
   return (
     <div>
       <form>
-        <div className="relative ml-6 m-3">
+        <div className="relative m-3 mx-auto max-w-md shadow rounded border-0 p-1">
           <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
             <svg
               aria-hidden="true"
-              className="w-5 h-5 text-gray-500 dark:text-gray-400"
+              className="w-5 h-5  dark:text-gray-900"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -35,7 +35,7 @@ const Users = () => {
           <input
             type="search"
             id="default-search"
-            className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block p-4 pl-10 w-full text-sm  bg-gray-50 rounded-lg border border-gray-200 bg-gradient-to-r from-teal-100 to-blue-400 dark:border-blue-200 dark:placeholder-neutral-600 dark:text-teal"
             placeholder="Search here for name or email....."
             onChange={(e) => setSearchTerm(e.target.value)}
             required
@@ -43,27 +43,42 @@ const Users = () => {
         </div>
       </form>
 
-      <table className="shadow-lg bg-white">
-        <thead>
-          <tr >
-            <th className="bg-blue-300 w-full border text-left px-16 py-2 rounded-md">
+      <table className="mx-auto max-w-4xl w-full whitespace-nowrap rounded-lg bg-white  divide-gray-300 overflow-hidden">
+        <thead className="bg-gradient-to-r from-indigo-200 to-blue-300">
+          <tr className="text-black text-left">
+            <th
+              scope="col"
+              className="font-semibold text-sm uppercase px-6 py-4 "
+            >
               Id
             </th>
-            <th className="bg-blue-300 w-full border text-left px-16 py-2 rounded-md">
+            <th
+              scope="col"
+              className="font-semibold text-sm uppercase px-6 py-4 "
+            >
               Name
             </th>
-            <th className="bg-blue-300 w-full border text-left px-16 py-2 rounded-md">
+            <th
+              scope="col"
+              className="font-semibold text-sm uppercase px-6 py-4 "
+            >
               Email
             </th>
-            <th className="bg-blue-300 w-full border text-left px-16 py-2 rounded-md">
+            <th
+              scope="col"
+              className="font-semibold text-sm uppercase px-6 py-4 "
+            >
               Company Name
             </th>
-            <th className="bg-blue-300 w-full border text-left px-16 py-2 rounded-md">
+            <th
+              scope="col"
+              className="font-semibold text-sm uppercase px-6 py-4"
+            >
               Zipcode
             </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="divide-y divide-gray-200">
           {users
             .filter((val) => {
               if (searchTerm === "") {
@@ -78,15 +93,39 @@ const Users = () => {
             .map((user) => {
               return (
                 <tr>
-                  <td className="border text-center py-2">{user.id}</td>
-                  <td className="border text-center py-2">{user.name}</td>
+                  <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+                    <div class="flex items-center space-x-3">
+                      <div>{user.id}</div>
+                    </div>
+                  </td>
+                  <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+                    <div class="flex items-center space-x-3">
+                      <div>{user.name}</div>
+                    </div>
+                  </td>
+                  <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+                    <div class="flex items-center space-x-3">
+                      <div>{user.email}</div>
+                    </div>
+                  </td>
+                  <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+                    <div class="flex items-center space-x-3">
+                      <div>{user.company.name}</div>
+                    </div>
+                  </td>
+                  <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
+                    <div class="flex items-center space-x-3">
+                      <div>{user.address.zipcode}</div>
+                    </div>
+                  </td>
+                  {/* <td className="border text-center py-2">{user.name}</td>
                   <td className="border text-center py-2">{user.email}</td>
                   <td className="border text-center py-2">
                     {user.company.name}
                   </td>
                   <td className="border text-center py-2">
                     {user.address.zipcode}
-                  </td>
+                  </td> */}
                 </tr>
               );
             })}
